@@ -1,8 +1,10 @@
 package ch2;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordStrengthMeterTest {
@@ -55,5 +57,55 @@ public class PasswordStrengthMeterTest {
         assertEquals(excepted,actual);
     }
 
+    @DisplayName("값이 없는 경우(null인 경우)")
+    @Test
+    public void nullInput_Then_Invalid(){
+        assertStrength(PasswordStrength.INVALID,null);
 
+
+    }
+
+    @DisplayName("빈 문자열인 경우")
+    @Test
+    public void emptyInput_Then_Invalid(){
+        //given
+        assertStrength(PasswordStrength.INVALID,"");
+
+    }
+
+    @DisplayName("대문자를 포함하지 않고 나머지 조건을 충족")
+    @Test
+    public void meeetsOtherCriteria_except_for_Uppercase_Then_Normal(){
+        //given
+        assertStrength(PasswordStrength.NORMAL,"ab12!@df");
+
+        //when
+
+
+        //then
+    }
+
+    @DisplayName("길이가 8글자 이상인 조건만 충족하는 경우")
+    @Test
+    public void meetsOnlyLengthCriteria_Then_Weak(){
+        //given
+        assertStrength(PasswordStrength.WEAK,"abcdefghi");
+        
+    }
+
+    @DisplayName("숫자 포함 조건만 충족하는 경우")
+    @Test
+    public void meetsOnlyNumCriteria_Then_Weak(){
+        //given
+        assertStrength(PasswordStrength.WEAK,"12345");
+
+    }
+
+    @DisplayName("대문자 포함 조건만 충족하는 경우")
+    @Test
+    public void meetsOnlyUpperCriteria_Then_Weak(){
+        //given
+        assertStrength(PasswordStrength.WEAK,"ABZEF");
+
+    }
 }

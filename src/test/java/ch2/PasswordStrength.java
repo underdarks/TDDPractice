@@ -1,7 +1,8 @@
 package ch2;
 
 public enum PasswordStrength {
-    STRONG,
+    INVALID,
+    WEAK,
     NORMAL,
-
+    STRONG,
 }

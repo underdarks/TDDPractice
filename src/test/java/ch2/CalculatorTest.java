@@ -16,4 +16,6 @@ public class CalculatorTest {
         Assertions.assertEquals(3, actual);
         Assertions.assertEquals(5, Calculator.plus(4, 1));
     }
+
+
 }
